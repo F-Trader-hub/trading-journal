@@ -1,0 +1,682 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Trading Journal Design System — dark, focused, professional */
+
+@layer base {
+  :root {
+    --background: 222 22% 6%;
+    --foreground: 210 20% 96%;
+
+    --card: 222 18% 9%;
+    --card-foreground: 210 20% 96%;
+    --card-elevated: 222 16% 11%;
+
+    --popover: 222 20% 8%;
+    --popover-foreground: 210 20% 96%;
+
+    --primary: 158 76% 48%;
+    --primary-foreground: 222 30% 6%;
+    --primary-glow: 158 90% 60%;
+
+    --secondary: 222 14% 13%;
+    --secondary-foreground: 210 20% 92%;
+
+    --muted: 222 14% 12%;
+    --muted-foreground: 215 14% 60%;
+
+    --accent: 222 14% 15%;
+    --accent-foreground: 210 20% 96%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 158 76% 48%;
+    --success-foreground: 222 30% 6%;
+
+    --warning: 38 92% 60%;
+    --warning-foreground: 222 30% 6%;
+
+    --border: 222 14% 16%;
+    --border-strong: 222 14% 22%;
+    --input: 222 14% 14%;
+    --ring: 158 76% 48%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 222 18% 8%;
+    --sidebar-foreground: 210 20% 92%;
+    --sidebar-primary: 158 76% 48%;
+    --sidebar-primary-foreground: 222 30% 6%;
+    --sidebar-accent: 222 14% 14%;
+    --sidebar-accent-foreground: 210 20% 96%;
+    --sidebar-border: 222 14% 16%;
+    --sidebar-ring: 158 76% 48%;
+
+    /* Gradients */
+    --gradient-profit: linear-gradient(
+      135deg,
+      hsl(158 76% 48% / 0.18),
+      hsl(158 90% 60% / 0.04) 60%,
+      transparent
+    );
+    --gradient-loss: linear-gradient(
+      135deg,
+      hsl(0 75% 60% / 0.18),
+      hsl(350 90% 65% / 0.04) 60%,
+      transparent
+    );
+    --gradient-neutral: linear-gradient(
+      135deg,
+      hsl(var(--accent)),
+      hsl(var(--card)) 80%
+    );
+    --gradient-page: radial-gradient(
+        80% 50% at 50% -10%,
+        hsl(158 76% 48% / 0.08),
+        transparent 70%
+      ),
+      hsl(var(--background));
+
+    /* Shadows */
+    --shadow-card: 0 1px 0 0 hsl(0 0% 100% / 0.03) inset,
+      0 1px 2px 0 hsl(0 0% 0% / 0.4);
+    --shadow-elevated: 0 8px 24px -8px hsl(0 0% 0% / 0.5),
+      0 1px 0 0 hsl(0 0% 100% / 0.04) inset;
+    --shadow-glow: 0 0 0 1px hsl(var(--primary) / 0.3),
+      0 8px 32px -8px hsl(var(--primary) / 0.4);
+  }
+
+  /* ========== THEME: APPLE / LINEAR MINIMAL ========== */
+  [data-theme="apple"] {
+    --background: 220 14% 7%;
+    --foreground: 210 14% 96%;
+    --card: 220 12% 10%;
+    --card-foreground: 210 14% 96%;
+    --card-elevated: 220 12% 13%;
+    --popover: 220 12% 9%;
+    --popover-foreground: 210 14% 96%;
+    --primary: 212 92% 62%;
+    --primary-foreground: 220 30% 10%;
+    --primary-glow: 212 100% 75%;
+    --secondary: 220 10% 15%;
+    --secondary-foreground: 210 14% 92%;
+    --muted: 220 10% 14%;
+    --muted-foreground: 215 12% 64%;
+    --accent: 264 92% 70%;
+    --accent-foreground: 220 30% 10%;
+    --destructive: 358 80% 64%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 72% 52%;
+    --success-foreground: 220 30% 10%;
+    --border: 220 10% 18%;
+    --border-strong: 220 10% 26%;
+    --input: 220 10% 16%;
+    --ring: 212 92% 62%;
+    --radius: 1.1rem;
+    --gradient-page:
+      radial-gradient(50% 35% at 15% 0%, hsl(212 92% 62% / 0.18), transparent 60%),
+      radial-gradient(45% 30% at 85% 10%, hsl(264 92% 70% / 0.15), transparent 65%),
+      radial-gradient(60% 40% at 50% 110%, hsl(190 95% 55% / 0.10), transparent 70%),
+      hsl(var(--background));
+    --shadow-card: 0 1px 0 0 hsl(0 0% 100% / 0.05) inset, 0 2px 6px 0 hsl(0 0% 0% / 0.35);
+    --shadow-elevated: 0 20px 60px -20px hsl(212 92% 62% / 0.35), 0 1px 0 0 hsl(0 0% 100% / 0.06) inset;
+    --shadow-glow: 0 0 0 1px hsl(212 92% 62% / 0.4), 0 0 40px -8px hsl(212 92% 62% / 0.55);
+  }
+  [data-theme="apple"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(hsl(0 0% 100% / 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 100% / 0.015) 1px, transparent 1px);
+    background-size: 56px 56px;
+    z-index: 0;
+  }
+
+  /* ========== THEME: BLOOMBERG TERMINAL ========== */
+  [data-theme="bloomberg"] {
+    --background: 0 0% 3%;
+    --foreground: 30 100% 92%;
+    --card: 0 0% 6%;
+    --card-foreground: 30 100% 92%;
+    --card-elevated: 0 0% 8%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 30 100% 92%;
+    --primary: 28 100% 56%;
+    --primary-foreground: 0 0% 5%;
+    --primary-glow: 35 100% 65%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 30 100% 92%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 30 25% 68%;
+    --accent: 50 100% 55%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 130 100% 50%;
+    --success-foreground: 0 0% 5%;
+    --warning: 50 100% 55%;
+    --warning-foreground: 0 0% 5%;
+    --border: 28 60% 18%;
+    --border-strong: 28 80% 32%;
+    --input: 0 0% 9%;
+    --ring: 28 100% 56%;
+    --radius: 0.125rem;
+    --gradient-page:
+      repeating-linear-gradient(0deg, hsl(28 100% 56% / 0.025) 0 1px, transparent 1px 3px),
+      radial-gradient(60% 40% at 50% 0%, hsl(28 100% 56% / 0.08), transparent 70%),
+      hsl(var(--background));
+    --shadow-card: 0 0 0 1px hsl(28 100% 56% / 0.15), inset 0 0 0 1px hsl(0 0% 100% / 0.02);
+    --shadow-elevated: 0 0 0 1px hsl(28 100% 56% / 0.35), 0 0 24px -4px hsl(28 100% 56% / 0.25), 0 4px 16px -4px hsl(0 0% 0% / 0.6);
+    --shadow-glow: 0 0 0 1px hsl(28 100% 56% / 0.6), 0 0 32px -2px hsl(28 100% 56% / 0.6);
+  }
+  [data-theme="bloomberg"] body {
+    font-family: "JetBrains Mono", "SF Mono", "Menlo", monospace;
+    text-shadow: 0 0 1px hsl(28 100% 56% / 0.3);
+  }
+  [data-theme="bloomberg"] body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 2px,
+      hsl(0 0% 0% / 0.15) 2px,
+      hsl(0 0% 0% / 0.15) 3px
+    );
+    z-index: 9999;
+    mix-blend-mode: multiply;
+  }
+
+  /* ========== THEME: GLASSMORPHISM NEON ========== */
+  [data-theme="glass"] {
+    --background: 260 50% 5%;
+    --foreground: 270 30% 97%;
+    --card: 265 40% 12%;
+    --card-foreground: 270 30% 97%;
+    --card-elevated: 265 40% 16%;
+    --popover: 265 45% 9%;
+    --popover-foreground: 270 30% 97%;
+    --primary: 280 100% 72%;
+    --primary-foreground: 260 40% 8%;
+    --primary-glow: 290 100% 80%;
+    --secondary: 265 35% 18%;
+    --secondary-foreground: 270 30% 95%;
+    --muted: 265 35% 15%;
+    --muted-foreground: 270 18% 72%;
+    --accent: 190 100% 62%;
+    --accent-foreground: 260 40% 8%;
+    --destructive: 340 100% 68%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 160 95% 58%;
+    --success-foreground: 260 40% 8%;
+    --border: 280 50% 28%;
+    --border-strong: 280 60% 40%;
+    --input: 265 35% 18%;
+    --ring: 280 100% 72%;
+    --radius: 1.5rem;
+    --gradient-page:
+      radial-gradient(45% 35% at 15% 5%, hsl(280 100% 72% / 0.35), transparent 65%),
+      radial-gradient(40% 30% at 85% 15%, hsl(190 100% 62% / 0.30), transparent 65%),
+      radial-gradient(55% 40% at 50% 90%, hsl(340 100% 68% / 0.25), transparent 70%),
+      radial-gradient(40% 30% at 90% 85%, hsl(45 100% 65% / 0.18), transparent 65%),
+      hsl(var(--background));
+    --shadow-card: 0 1px 0 0 hsl(0 0% 100% / 0.08) inset, 0 8px 32px -8px hsl(280 100% 72% / 0.25), 0 0 0 1px hsl(280 100% 72% / 0.12);
+    --shadow-elevated: 0 24px 64px -20px hsl(280 100% 72% / 0.5), 0 1px 0 0 hsl(0 0% 100% / 0.1) inset, 0 0 0 1px hsl(280 100% 72% / 0.2);
+    --shadow-glow: 0 0 0 1px hsl(280 100% 72% / 0.5), 0 0 48px -4px hsl(280 100% 72% / 0.7), 0 0 80px -8px hsl(190 100% 62% / 0.3);
+  }
+  [data-theme="glass"] body {
+    background-attachment: fixed;
+  }
+  [data-theme="glass"] body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 30% 40%, hsl(280 100% 72% / 0.15), transparent 40%),
+      radial-gradient(circle at 70% 60%, hsl(190 100% 62% / 0.12), transparent 40%);
+    animation: glass-drift 24s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+  [data-theme="glass"] [class*="bg-card"],
+  [data-theme="glass"] .shadow-card {
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    background-color: hsl(265 40% 12% / 0.6) !important;
+    border: 1px solid hsl(280 60% 50% / 0.18);
+  }
+  @keyframes glass-drift {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(5%, -5%) rotate(8deg); }
+  }
+
+  /* ========== THEME: TRADINGVIEW PRO ========== */
+  [data-theme="tradingview"] {
+    --background: 215 40% 8%;
+    --foreground: 210 25% 97%;
+    --card: 215 35% 11%;
+    --card-foreground: 210 25% 97%;
+    --card-elevated: 215 32% 14%;
+    --popover: 215 38% 9%;
+    --popover-foreground: 210 25% 97%;
+    --primary: 210 100% 62%;
+    --primary-foreground: 215 35% 9%;
+    --primary-glow: 195 100% 65%;
+    --secondary: 215 28% 16%;
+    --secondary-foreground: 210 25% 94%;
+    --muted: 215 28% 15%;
+    --muted-foreground: 215 18% 68%;
+    --accent: 195 100% 55%;
+    --accent-foreground: 215 35% 9%;
+    --destructive: 0 85% 62%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 145 75% 50%;
+    --success-foreground: 0 0% 100%;
+    --border: 215 28% 22%;
+    --border-strong: 210 80% 45%;
+    --input: 215 28% 16%;
+    --ring: 210 100% 62%;
+    --radius: 0.5rem;
+    --gradient-page:
+      linear-gradient(180deg, hsl(210 100% 62% / 0.08) 0%, transparent 30%),
+      repeating-linear-gradient(0deg, hsl(210 100% 62% / 0.025) 0 1px, transparent 1px 80px),
+      repeating-linear-gradient(90deg, hsl(210 100% 62% / 0.025) 0 1px, transparent 1px 80px),
+      radial-gradient(70% 50% at 50% 100%, hsl(145 75% 50% / 0.06), transparent 70%),
+      hsl(var(--background));
+    --shadow-card: 0 1px 0 0 hsl(0 0% 100% / 0.04) inset, 0 2px 4px 0 hsl(0 0% 0% / 0.4), 0 0 0 1px hsl(210 100% 62% / 0.05);
+    --shadow-elevated: 0 12px 32px -10px hsl(210 100% 62% / 0.3), 0 1px 0 0 hsl(0 0% 100% / 0.05) inset;
+    --shadow-glow: 0 0 0 1px hsl(210 100% 62% / 0.5), 0 0 32px -4px hsl(210 100% 62% / 0.6);
+  }
+
+  /* ========== THEME: NOTION SOFT ========== */
+  [data-theme="notion"] {
+    --background: 30 12% 10%;
+    --foreground: 30 14% 94%;
+    --card: 30 10% 13%;
+    --card-foreground: 30 14% 94%;
+    --card-elevated: 30 10% 17%;
+    --popover: 30 10% 12%;
+    --popover-foreground: 30 14% 94%;
+    --primary: 22 85% 62%;
+    --primary-foreground: 30 30% 12%;
+    --primary-glow: 30 95% 70%;
+    --secondary: 30 8% 19%;
+    --secondary-foreground: 30 14% 92%;
+    --muted: 30 8% 17%;
+    --muted-foreground: 30 10% 64%;
+    --accent: 350 70% 65%;
+    --accent-foreground: 30 30% 12%;
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 145 55% 52%;
+    --success-foreground: 0 0% 100%;
+    --border: 30 8% 22%;
+    --border-strong: 30 8% 32%;
+    --input: 30 8% 18%;
+    --ring: 22 85% 62%;
+    --radius: 0.75rem;
+    --gradient-page:
+      radial-gradient(40% 30% at 10% 0%, hsl(22 85% 62% / 0.15), transparent 65%),
+      radial-gradient(35% 25% at 95% 5%, hsl(350 70% 65% / 0.10), transparent 65%),
+      radial-gradient(50% 35% at 50% 100%, hsl(45 80% 60% / 0.08), transparent 70%),
+      hsl(var(--background));
+    --shadow-card: 0 1px 0 0 hsl(0 0% 100% / 0.04) inset, 0 1px 3px 0 hsl(0 0% 0% / 0.35), 0 0 0 1px hsl(22 85% 62% / 0.06);
+    --shadow-elevated: 0 10px 28px -8px hsl(22 85% 62% / 0.25), 0 1px 0 0 hsl(0 0% 100% / 0.04) inset;
+    --shadow-glow: 0 0 0 1px hsl(22 85% 62% / 0.4), 0 0 28px -4px hsl(22 85% 62% / 0.5);
+  }
+  [data-theme="notion"] body {
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* ========== THEME: SYNTHWAVE / RETRO ========== */
+  [data-theme="synthwave"] {
+    --background: 270 60% 6%;
+    --foreground: 320 30% 97%;
+    --card: 275 50% 11%;
+    --card-foreground: 320 30% 97%;
+    --card-elevated: 275 50% 15%;
+    --popover: 275 55% 9%;
+    --popover-foreground: 320 30% 97%;
+    --primary: 320 100% 65%;
+    --primary-foreground: 270 60% 8%;
+    --primary-glow: 320 100% 75%;
+    --secondary: 275 45% 18%;
+    --secondary-foreground: 320 30% 95%;
+    --muted: 275 45% 15%;
+    --muted-foreground: 320 20% 75%;
+    --accent: 195 100% 60%;
+    --accent-foreground: 270 60% 8%;
+    --destructive: 0 100% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 150 100% 55%;
+    --success-foreground: 270 60% 8%;
+    --border: 320 60% 30%;
+    --border-strong: 320 80% 50%;
+    --input: 275 45% 16%;
+    --ring: 320 100% 65%;
+    --radius: 0.375rem;
+    --gradient-page:
+      linear-gradient(180deg, transparent 0%, transparent 60%, hsl(320 100% 65% / 0.15) 80%, hsl(195 100% 60% / 0.2) 100%),
+      repeating-linear-gradient(90deg, transparent 0 60px, hsl(320 100% 65% / 0.06) 60px 61px),
+      radial-gradient(60% 40% at 50% 0%, hsl(280 100% 70% / 0.25), transparent 65%),
+      hsl(var(--background));
+    --shadow-card: 0 0 0 1px hsl(320 100% 65% / 0.25), 0 4px 16px -4px hsl(320 100% 65% / 0.3), inset 0 1px 0 0 hsl(0 0% 100% / 0.05);
+    --shadow-elevated: 0 0 0 1px hsl(320 100% 65% / 0.4), 0 0 32px -4px hsl(320 100% 65% / 0.5), 0 0 64px -8px hsl(195 100% 60% / 0.3);
+    --shadow-glow: 0 0 0 1px hsl(320 100% 65% / 0.7), 0 0 24px 0 hsl(320 100% 65% / 0.6), 0 0 48px -4px hsl(195 100% 60% / 0.5);
+  }
+
+  /* ========== THEME: MATRIX / CYBER ========== */
+  [data-theme="matrix"] {
+    --background: 140 60% 3%;
+    --foreground: 130 100% 88%;
+    --card: 140 50% 6%;
+    --card-foreground: 130 100% 88%;
+    --card-elevated: 140 50% 9%;
+    --popover: 140 55% 5%;
+    --popover-foreground: 130 100% 88%;
+    --primary: 130 100% 55%;
+    --primary-foreground: 140 60% 5%;
+    --primary-glow: 120 100% 65%;
+    --secondary: 140 45% 11%;
+    --secondary-foreground: 130 100% 88%;
+    --muted: 140 45% 9%;
+    --muted-foreground: 130 40% 62%;
+    --accent: 100 100% 50%;
+    --accent-foreground: 140 60% 5%;
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 120 100% 55%;
+    --success-foreground: 140 60% 5%;
+    --border: 130 80% 18%;
+    --border-strong: 130 100% 35%;
+    --input: 140 45% 9%;
+    --ring: 130 100% 55%;
+    --radius: 0.125rem;
+    --gradient-page:
+      repeating-linear-gradient(0deg, hsl(130 100% 55% / 0.04) 0 1px, transparent 1px 4px),
+      radial-gradient(60% 40% at 50% 0%, hsl(130 100% 55% / 0.12), transparent 70%),
+      hsl(var(--background));
+    --shadow-card: 0 0 0 1px hsl(130 100% 55% / 0.2), 0 0 16px -4px hsl(130 100% 55% / 0.3);
+    --shadow-elevated: 0 0 0 1px hsl(130 100% 55% / 0.4), 0 0 32px -4px hsl(130 100% 55% / 0.5);
+    --shadow-glow: 0 0 0 1px hsl(130 100% 55% / 0.7), 0 0 24px 0 hsl(130 100% 55% / 0.7);
+  }
+  [data-theme="matrix"] body {
+    font-family: "JetBrains Mono", "SF Mono", monospace;
+    text-shadow: 0 0 4px hsl(130 100% 55% / 0.5);
+  }
+
+  /* ========== THEME: AURORA ========== */
+  [data-theme="aurora"] {
+    --background: 230 35% 7%;
+    --foreground: 200 30% 97%;
+    --card: 230 30% 11%;
+    --card-foreground: 200 30% 97%;
+    --card-elevated: 230 28% 14%;
+    --popover: 230 32% 9%;
+    --popover-foreground: 200 30% 97%;
+    --primary: 165 85% 55%;
+    --primary-foreground: 230 35% 9%;
+    --primary-glow: 175 95% 65%;
+    --secondary: 230 22% 16%;
+    --secondary-foreground: 200 30% 95%;
+    --muted: 230 22% 14%;
+    --muted-foreground: 215 16% 70%;
+    --accent: 270 90% 70%;
+    --accent-foreground: 230 35% 9%;
+    --destructive: 350 85% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 165 85% 55%;
+    --success-foreground: 230 35% 9%;
+    --border: 230 22% 20%;
+    --border-strong: 165 60% 35%;
+    --input: 230 22% 16%;
+    --ring: 165 85% 55%;
+    --radius: 1rem;
+    --gradient-page:
+      radial-gradient(60% 50% at 0% 0%, hsl(165 85% 55% / 0.25), transparent 60%),
+      radial-gradient(50% 40% at 100% 0%, hsl(270 90% 70% / 0.22), transparent 60%),
+      radial-gradient(70% 50% at 50% 100%, hsl(210 100% 60% / 0.18), transparent 65%),
+      hsl(var(--background));
+    --shadow-card: 0 1px 0 0 hsl(0 0% 100% / 0.05) inset, 0 4px 20px -6px hsl(165 85% 55% / 0.18);
+    --shadow-elevated: 0 20px 56px -16px hsl(165 85% 55% / 0.35), 0 1px 0 0 hsl(0 0% 100% / 0.06) inset;
+    --shadow-glow: 0 0 0 1px hsl(165 85% 55% / 0.4), 0 0 40px -4px hsl(165 85% 55% / 0.6), 0 0 80px -10px hsl(270 90% 70% / 0.4);
+  }
+  [data-theme="aurora"] body::before {
+    content: "";
+    position: fixed;
+    inset: -25%;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 30%, hsl(165 85% 55% / 0.15), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 70% 60%, hsl(270 90% 70% / 0.12), transparent 60%);
+    filter: blur(40px);
+    animation: aurora-flow 18s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+  @keyframes aurora-flow {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+    50% { transform: translate(8%, -4%) scale(1.1); opacity: 1; }
+    100% { transform: translate(-4%, 6%) scale(0.95); opacity: 0.8; }
+  }
+
+  /* ========== THEME: SUNSET ========== */
+  [data-theme="sunset"] {
+    --background: 15 35% 8%;
+    --foreground: 30 25% 96%;
+    --card: 15 30% 12%;
+    --card-foreground: 30 25% 96%;
+    --card-elevated: 15 28% 15%;
+    --popover: 15 32% 10%;
+    --popover-foreground: 30 25% 96%;
+    --primary: 18 95% 62%;
+    --primary-foreground: 15 35% 10%;
+    --primary-glow: 35 100% 68%;
+    --secondary: 15 22% 17%;
+    --secondary-foreground: 30 25% 94%;
+    --muted: 15 22% 15%;
+    --muted-foreground: 25 15% 68%;
+    --accent: 340 85% 65%;
+    --accent-foreground: 15 35% 10%;
+    --destructive: 0 80% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 145 65% 52%;
+    --success-foreground: 0 0% 100%;
+    --border: 15 22% 22%;
+    --border-strong: 18 70% 40%;
+    --input: 15 22% 17%;
+    --ring: 18 95% 62%;
+    --radius: 0.875rem;
+    --gradient-page:
+      linear-gradient(180deg, hsl(280 60% 25%) 0%, hsl(340 70% 22%) 25%, hsl(15 80% 18%) 55%, hsl(15 35% 8%) 90%),
+      radial-gradient(50% 40% at 50% 70%, hsl(35 100% 60% / 0.3), transparent 70%);
+    --shadow-card: 0 1px 0 0 hsl(0 0% 100% / 0.05) inset, 0 4px 16px -4px hsl(18 95% 62% / 0.2);
+    --shadow-elevated: 0 16px 48px -12px hsl(18 95% 62% / 0.4), 0 1px 0 0 hsl(0 0% 100% / 0.06) inset;
+    --shadow-glow: 0 0 0 1px hsl(18 95% 62% / 0.4), 0 0 36px -4px hsl(18 95% 62% / 0.6);
+  }
+
+  /* ========== THEME: MIDNIGHT TRADER ========== */
+  [data-theme="midnight"] {
+    --background: 220 40% 3%;
+    --foreground: 200 20% 96%;
+    --card: 220 35% 6%;
+    --card-foreground: 200 20% 96%;
+    --card-elevated: 220 32% 9%;
+    --popover: 220 38% 5%;
+    --popover-foreground: 200 20% 96%;
+    --primary: 175 95% 55%;
+    --primary-foreground: 220 40% 5%;
+    --primary-glow: 175 100% 65%;
+    --secondary: 220 28% 11%;
+    --secondary-foreground: 200 20% 94%;
+    --muted: 220 28% 9%;
+    --muted-foreground: 210 15% 60%;
+    --accent: 158 90% 50%;
+    --accent-foreground: 220 40% 5%;
+    --destructive: 354 90% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 158 90% 50%;
+    --success-foreground: 220 40% 5%;
+    --warning: 42 100% 60%;
+    --warning-foreground: 220 40% 5%;
+    --border: 220 25% 14%;
+    --border-strong: 175 60% 30%;
+    --input: 220 28% 10%;
+    --ring: 175 95% 55%;
+    --radius: 0.5rem;
+    --gradient-page:
+      repeating-linear-gradient(0deg, hsl(175 95% 55% / 0.018) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(90deg, hsl(175 95% 55% / 0.018) 0 1px, transparent 1px 64px),
+      radial-gradient(55% 35% at 20% 0%, hsl(175 95% 55% / 0.12), transparent 65%),
+      radial-gradient(50% 35% at 80% 5%, hsl(158 90% 50% / 0.10), transparent 65%),
+      radial-gradient(70% 50% at 50% 110%, hsl(220 80% 40% / 0.18), transparent 70%),
+      hsl(var(--background));
+    --shadow-card:
+      0 1px 0 0 hsl(0 0% 100% / 0.04) inset,
+      0 0 0 1px hsl(175 95% 55% / 0.05),
+      0 4px 16px -4px hsl(0 0% 0% / 0.6);
+    --shadow-elevated:
+      0 1px 0 0 hsl(0 0% 100% / 0.05) inset,
+      0 0 0 1px hsl(175 95% 55% / 0.15),
+      0 16px 40px -12px hsl(175 95% 55% / 0.25),
+      0 8px 24px -8px hsl(0 0% 0% / 0.7);
+    --shadow-glow:
+      0 0 0 1px hsl(175 95% 55% / 0.5),
+      0 0 32px -4px hsl(175 95% 55% / 0.55),
+      0 0 64px -12px hsl(158 90% 50% / 0.4);
+  }
+  [data-theme="midnight"] body {
+    font-feature-settings: "tnum", "ss01";
+  }
+  [data-theme="midnight"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, hsl(175 95% 55% / 0.04) 0%, transparent 8%),
+      linear-gradient(0deg, hsl(220 80% 40% / 0.06) 0%, transparent 12%);
+    z-index: 0;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 30% 10%;
+    --card-elevated: 210 20% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 30% 10%;
+    --primary: 158 76% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 222 30% 10%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 14% 45%;
+    --accent: 210 20% 96%;
+    --accent-foreground: 222 30% 10%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 158 76% 38%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --border: 214 20% 90%;
+    --border-strong: 214 20% 80%;
+    --input: 214 20% 90%;
+    --ring: 158 76% 38%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply text-foreground antialiased;
+    background: var(--gradient-page);
+    background-attachment: fixed;
+    font-feature-settings: "cv11", "ss01";
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Larger tap targets on mobile inputs */
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 16px; /* prevents iOS zoom */
+  }
+
+  @media (min-width: 640px) {
+    input,
+    select,
+    textarea,
+    button {
+      font-size: 14px;
+    }
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
+
+@layer utilities {
+  .text-profit {
+    color: hsl(var(--success));
+  }
+  .text-loss {
+    color: hsl(var(--destructive));
+  }
+  .bg-profit-soft {
+    background-color: hsl(var(--success) / 0.12);
+    color: hsl(var(--success));
+  }
+  .bg-loss-soft {
+    background-color: hsl(var(--destructive) / 0.12);
+    color: hsl(var(--destructive));
+  }
+  .border-profit {
+    border-color: hsl(var(--success) / 0.4);
+  }
+  .border-loss {
+    border-color: hsl(var(--destructive) / 0.4);
+  }
+  .bg-gradient-profit {
+    background-image: var(--gradient-profit);
+  }
+  .bg-gradient-loss {
+    background-image: var(--gradient-loss);
+  }
+  .bg-gradient-neutral {
+    background-image: var(--gradient-neutral);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .ring-profit {
+    box-shadow: inset 3px 0 0 0 hsl(var(--success));
+  }
+  .ring-loss {
+    box-shadow: inset 3px 0 0 0 hsl(var(--destructive));
+  }
+}
